@@ -111,12 +111,12 @@ babynames_a_csv <- read_csv("data/babynames_a.csv")
 
 We can load that same csv from the internet, instead of doing it locally.  We just need to change the information inside of the `read_csv()` function to pass a URL, instead of a location on our computer. 
 
-The CSV is up on Github.com, here: https://raw.githubusercontent.com/smussenden/nicar_2023_r_track/main/notebooks/data/babynames_a.csv
+The CSV is up on Github.com, here: https://raw.githubusercontent.com/smussenden/nicar_2024_r3_loading_cleaning_data/main/data/babynames_a.csv
 
 Warning: this may not work if the wifi is buggy!
 
 ```{r}
-babynames_a_csv_web <- read_csv("https://raw.githubusercontent.com/smussenden/nicar_2023_r_track/main/notebooks/data/babynames_a.csv")
+babynames_a_csv_web <- read_csv("https://raw.githubusercontent.com/smussenden/nicar_2024_r3_loading_cleaning_data/main/data/babynames_a.csv")
 ```
 
 #### Loading data from an Excel file
@@ -155,7 +155,7 @@ babynames_b_excel <- read_xlsx("data/babynames_excel.xlsx")
 
 #### Loading data from an HTML table
 
-On this page is an HTML table showing the top 2021 baby names. https://www.ssa.gov/oact/babynames/. Because the wifi is often buggy, I've saved an HTML file locally of this page, which we'll work with instead.  It's in the data folder.
+On this page is an HTML table showing the top 2022 baby names. https://www.ssa.gov/oact/babynames/. Because the wifi is often buggy, I've saved an HTML file locally of this page, which we'll work with instead.  It's in the data folder.
 
 We can use the inspector in our web browser to see this.  It's composed of html tags. 
 
@@ -164,17 +164,17 @@ Using the `rvest` package we're going to first read in the entire html page usin
 ```{r}
 # If we were going to pull directly from the web, instead of from a local file, this is what it will the function would look 
 
-# top_2021_baby_names <- read_html("https://www.ssa.gov/oact/babynames/") 
+# top_2022_baby_names <- read_html("https://www.ssa.gov/oact/babynames/") 
 
 # Instead, we're gonna load a local html file to simulate the act of scraping from the web
-top_2021_baby_names <- read_html("data/html/ssa_baby_names.html")
+top_2022_baby_names <- read_html("data/html/ssa_baby_names.html")
 ```
 
 Open it up in the environment window.  It's the full HTML of the page. 
 Next, we'll use `rvest` to extract the html table we want using `html_table()`
 
 ```{r}
-top_2021_baby_names <- read_html("data/html/ssa_baby_names.html") %>%
+top_2022_baby_names <- read_html("data/html/ssa_baby_names.html") %>%
   html_table()
 
 ```
@@ -184,14 +184,14 @@ Open it up in the environment window. We've isolated that one html table and tur
 ```{r}
 
 # Load html and extract table
-top_2021_baby_names <- read_html("data/html/ssa_baby_names.html") %>%
+top_2022_baby_names <- read_html("data/html/ssa_baby_names.html") %>%
   html_table()
 
 # Pluck out the table
-top_2021_baby_names <- top_2021_baby_names[[1]]
+top_2022_baby_names <- top_2022_baby_names[[1]]
 
 # display it
-top_2021_baby_names
+top_2022_baby_names
 
 ```
 
@@ -207,7 +207,7 @@ To read in the sheet, we need to paste in the sheet ID, which is the long sting 
 
 Because the "A" sheet comes first, it automatically loads that sheet.
 
-Before we get there, though, we'll need to authenticate with Google.  Look down in the console, select an account or hit 0 to start the process of in-browser authentication.
+Before we get there, though, we'll need to authenticate with Google.  Look down in the console, select an account or hit 1 to start the process of in-browser authentication.
 
 ```{r}
 gs4_auth()
@@ -523,17 +523,5 @@ When we glimpse the data, it's been converted to the correct datatype.
 ```{r}
 glimpse(babynames_clean)
 ```
-
-#### Final Practice
-
-If there's time left over, there's a dataset called tenn_gva.csv in the data folder that you can use to practice your new data cleaning skills. 
-
-Write code to load the data, identify potential issues, then write code to fix them.
-
-```{r}
-
-
-```
-
 
 Thanks for joining.  If you get stuck in the future and need some help, I'm at smussend@umd.edu. 
